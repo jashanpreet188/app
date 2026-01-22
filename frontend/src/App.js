@@ -43,8 +43,8 @@ function App() {
   };
 
   const handleBook = async () => {
-    if (numRooms < 1 || numRooms > 5) {
-      toast.error("Please enter a number between 1 and 5");
+    if (!numRooms || isNaN(numRooms) || numRooms < 1 || numRooms > 5) {
+      toast.error("Please enter a valid number between 1 and 5");
       return;
     }
 
@@ -59,7 +59,8 @@ function App() {
       // Clear highlight after 3 seconds
       setTimeout(() => setLastBookedRooms([]), 3000);
     } catch (error) {
-      toast.error(error.response?.data?.detail || "Failed to book rooms");
+      const errorMsg = error.response?.data?.detail || "Failed to book rooms";
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }
