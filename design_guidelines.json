@@ -1,0 +1,107 @@
+{
+  "design_system": {
+    "identity": "E1 - The Anti-AI Designer",
+    "philosophy": "Swiss Utility & High Contrast. Function over decoration. Clarity is the ultimate sophistication.",
+    "theme": "light",
+    "typography": {
+      "font_family_heading": "Chivo, sans-serif",
+      "font_family_body": "Public Sans, sans-serif",
+      "font_family_mono": "JetBrains Mono, monospace",
+      "scale": {
+        "h1": "text-4xl font-black tracking-tight lg:text-5xl",
+        "h2": "text-3xl font-bold tracking-tight",
+        "h3": "text-2xl font-semibold tracking-tight",
+        "body": "text-base font-normal leading-relaxed",
+        "small": "text-sm font-medium tracking-wide uppercase text-muted-foreground"
+      }
+    },
+    "colors": {
+      "palette": {
+        "background": "#FAFAFA",
+        "surface": "#FFFFFF",
+        "primary": "#18181B",
+        "primary_foreground": "#FAFAFA",
+        "secondary": "#F4F4F5",
+        "secondary_foreground": "#18181B",
+        "muted": "#E4E4E7",
+        "muted_foreground": "#71717A",
+        "accent": "#2563EB",
+        "accent_foreground": "#FFFFFF",
+        "destructive": "#FECDD3",
+        "destructive_foreground": "#881337",
+        "border": "#E4E4E7"
+      },
+      "semantic": {
+        "room_available": "bg-white border-zinc-200 hover:border-zinc-900 text-zinc-900",
+        "room_occupied": "bg-zinc-100 text-zinc-400 cursor-not-allowed pattern-diagonal-lines",
+        "room_selected": "bg-zinc-900 text-white border-zinc-900 shadow-lg scale-105 z-10",
+        "staircase_lift": "bg-zinc-900 text-zinc-400"
+      }
+    },
+    "spacing": {
+      "container_padding": "p-6 md:p-12",
+      "grid_gap": "gap-3",
+      "section_gap": "gap-8"
+    },
+    "visual_enhancers": {
+      "radius": "rounded-sm",
+      "shadow": "shadow-[0_1px_2px_rgba(0,0,0,0.05)]",
+      "glass": "backdrop-blur-md bg-white/80 border-b border-zinc-200/50"
+    }
+  },
+  "layout_strategy": {
+    "type": "Dashboard / Admin Panel",
+    "structure": "Sidebar-Left (Stairs/Lift) + Main Content (Room Grid)",
+    "grid_system": "Custom CSS Grid for Rooms. 10 Rows (Floors).",
+    "alignment": "Left-aligned text. Optical alignment for icons.",
+    "responsive": "Mobile: Stacked. Desktop: Split view (Controls Top/Side, Grid Main)."
+  },
+  "components": {
+    "RoomCell": {
+      "description": "Individual room unit. Must look like a physical keycard or door plate.",
+      "styles": "h-12 w-full flex items-center justify-center text-sm font-mono transition-all duration-200 border select-none",
+      "interaction": "Click to toggle selection (if available). Hover effect: lift and border darken."
+    },
+    "FloorRow": {
+      "description": "Horizontal container for a single floor.",
+      "styles": "flex items-center gap-2 mb-2"
+    },
+    "StaircaseColumn": {
+      "description": "Vertical visual anchor on the left representing the building core.",
+      "styles": "w-16 flex flex-col items-center justify-between py-4 bg-zinc-50 border-r border-zinc-200 h-full font-mono text-xs text-zinc-400 writing-vertical-lr"
+    },
+    "ControlPanel": {
+      "description": "Floating or sticky header for actions.",
+      "styles": "sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-zinc-200 p-4 flex items-center justify-between gap-4"
+    }
+  },
+  "assets": {
+    "images": [
+      {
+        "category": "background_texture",
+        "url": "https://images.unsplash.com/photo-1758229296844-f2b0e86b50f0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MTN8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGFyY2hpdGVjdHVyYWwlMjB3aGl0ZSUyMGNvbmNyZXRlfGVufDB8fHx8MTc2OTA5NjE2NHww&ixlib=rb-4.1.0&q=85",
+        "description": "Subtle concrete texture for the app background or sidebar to give a physical feel."
+      }
+    ],
+    "icons": "Lucide React (ArrowUp, ArrowDown, Box, History, RotateCcw, Shuffle)"
+  },
+  "instructions_to_main_agent": [
+    "1. SETUP: Install 'lucide-react' and 'clsx' 'tailwind-merge' if not present.",
+    "2. FONTS: Add 'Chivo' and 'Public Sans' via Google Fonts in index.html or CSS.",
+    "3. LAYOUT: Implement the 'Staircase Left, Rooms Right' layout strictly. The Staircase should be a visual column.",
+    "4. ALGORITHM: The 'Book' button must trigger the travel time optimization logic (mocked or real).",
+    "5. VISUALS: Use the 'RoomCell' style defined above. Do not make them simple colored squares. Give them borders and subtle interaction states.",
+    "6. DATA-TESTID: Add 'data-testid' to all interactive elements (e.g., 'room-101', 'book-btn', 'reset-btn').",
+    "7. THEME: Force Light Mode. Do not implement Dark Mode unless requested later. The aesthetic is 'Swiss Medical/Hotel'.",
+    "8. HISTORY: Use a Sheet (Side Drawer) or a ScrollArea in the sidebar for Booking History."
+  ],
+  "universal_guidelines": [
+    "Avoid 'AI slop' - generic centered layouts and gradients.",
+    "Use 2-3x more spacing than typical.",
+    "Micro-animations for all interactions (hover, click).",
+    "No 'transition: all'. Use specific transitions.",
+    "Use 'sonner' for toasts.",
+    "Components must use named exports.",
+    "Pages must use default exports."
+  ]
+}
