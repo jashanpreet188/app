@@ -173,14 +173,17 @@ function App() {
           
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" className="btn-outline">
+              <Button variant="outline" className="btn-outline" aria-label="Open booking history">
                 <History className="w-4 h-4 mr-2" />
                 History
               </Button>
             </SheetTrigger>
-            <SheetContent>
+            <SheetContent aria-describedby="booking-history-description">
               <SheetHeader>
                 <SheetTitle>Booking History</SheetTitle>
+                <p id="booking-history-description" className="sr-only">
+                  View your previous room bookings with details including rooms booked, travel time, and booking timestamps
+                </p>
               </SheetHeader>
               <ScrollArea className="h-[calc(100vh-120px)] mt-6">
                 {bookings.length === 0 ? (
