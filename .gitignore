@@ -18,7 +18,14 @@ node_modules/
 
 # Testing
 /coverage
-
+# =========================
+# ENV FILES (DO NOT COMMIT)
+# =========================
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
 # Next.js
 /.next/
 /out/
