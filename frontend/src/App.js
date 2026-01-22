@@ -135,7 +135,24 @@ function App() {
               min="1"
               max="5"
               value={numRooms}
-              onChange={(e) => setNumRooms(parseInt(e.target.value) || 1)}
+              onChange={(e) => {
+                const val = e.target.value;
+                if (val === '') {
+                  setNumRooms('');
+                } else {
+                  const num = parseInt(val);
+                  if (!isNaN(num)) {
+                    setNumRooms(num);
+                  }
+                }
+              }}
+              onBlur={() => {
+                if (numRooms === '' || numRooms < 1) {
+                  setNumRooms(1);
+                } else if (numRooms > 5) {
+                  setNumRooms(5);
+                }
+              }}
               className="w-24"
             />
           </div>
