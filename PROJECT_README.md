@@ -213,6 +213,4 @@ Created for Unstop recruitment assessment.
 
 For questions regarding this assessment, contact: careers@unstop.com
 
----
 
-**Built with Emergent Agent Platform**
