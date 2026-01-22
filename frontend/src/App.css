@@ -1,34 +1,330 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+body {
+  font-family: 'Public Sans', sans-serif;
+  background-color: #FAFAFA;
+  color: #18181B;
+  line-height: 1.5;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
+h1, h2, h3 {
+  font-family: 'Chivo', sans-serif;
+}
+
+.app-container {
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+/* Control Panel */
+.control-panel {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #E4E4E7;
+  padding: 1rem 1.5rem;
+  margin: -1.5rem -1.5rem 2rem -1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.control-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.control-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.input-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #71717A;
+}
+
+.btn-primary {
+  background: #18181B;
+  color: #FAFAFA;
+  font-weight: 600;
+  transition: all 200ms ease;
+}
+
+.btn-primary:hover {
+  background: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline {
+  border: 1px solid #E4E4E7;
+  background: white;
+  transition: all 200ms ease;
+}
+
+.btn-outline:hover {
+  border-color: #18181B;
+  transform: translateY(-1px);
+}
+
+/* Main Layout */
+.main-layout {
+  display: flex;
+  gap: 1rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Staircase Column */
+.staircase-column {
+  width: 80px;
+  min-height: 600px;
+  background: linear-gradient(180deg, #18181B 0%, #27272A 100%);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0.5rem;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.staircase-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: #A1A1AA;
+  text-transform: uppercase;
+}
+
+/* Room Grid */
+.room-grid-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.floor-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.floor-label {
+  width: 40px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #71717A;
+  text-align: right;
+}
+
+.rooms-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Room Cell */
+.room-cell {
+  width: 80px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 2px solid;
+  border-radius: 2px;
+  transition: all 200ms ease;
+  cursor: default;
+  user-select: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.room-available {
+  background: white;
+  border-color: #E4E4E7;
+  color: #18181B;
+}
+
+.room-available:hover {
+  border-color: #18181B;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.room-booked {
+  background: #F4F4F5;
+  border-color: #E4E4E7;
+  color: #A1A1AA;
+  cursor: not-allowed;
+  position: relative;
+  overflow: hidden;
+}
+
+.room-booked::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(0, 0, 0, 0.03) 5px,
+    rgba(0, 0, 0, 0.03) 10px
+  );
+}
+
+.room-selected {
+  background: #18181B;
+  border-color: #18181B;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  animation: pulse 1s ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1.05); }
+  50% { transform: scale(1.08); }
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #E4E4E7;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #52525B;
+}
+
+.legend-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 2px;
+  border: 2px solid;
+}
+
+/* Booking History */
+.booking-card {
+  padding: 1rem;
+  background: #FAFAFA;
+  border: 1px solid #E4E4E7;
+  border-radius: 4px;
+  transition: border-color 200ms ease;
+}
+
+.booking-card:hover {
+  border-color: #18181B;
+}
+
+.booking-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #18181B;
+  margin-bottom: 0.5rem;
+}
+
+.booking-detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.detail-label {
+  color: #71717A;
+  font-weight: 500;
+}
+
+.detail-value {
+  color: #18181B;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.booking-time {
+  font-size: 0.75rem;
+  color: #A1A1AA;
+  margin-top: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-layout {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-}
-
-.App-link {
-    color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  }
+  
+  .staircase-column {
+    width: 100%;
+    min-height: 60px;
+    writing-mode: horizontal-tb;
+  }
+  
+  .staircase-label {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+  
+  .room-cell {
+    width: 60px;
+    height: 40px;
+    font-size: 0.75rem;
+  }
+  
+  .control-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .control-actions {
+    justify-content: stretch;
+  }
 }
